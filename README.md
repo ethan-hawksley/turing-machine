@@ -1,7 +1,9 @@
 # Turing Machine
+
 This is a turing machine simulator built with HTML, CSS, and JavaScript.
 
 ## How To Use
+
 Visit https://hawksley.dev/turing-machine
 
 - States - The list of possible states the machine can be in
