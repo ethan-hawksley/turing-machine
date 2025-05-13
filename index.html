@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link href="style.css" rel="stylesheet" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>Turing Machine</title>
+        <link href="favicon.svg" rel="icon" />
+        <meta content="Online Turing Machine simulator." name="description" />
+    </head>
+    <body>
+        <header>
+            <h1>Turing Machine</h1>
+            <p class="subtitle">
+                Interactive simulator for the theoretical computer
+            </p>
+        </header>
+        <div id="parameters">
+            <label for="states-input">States</label>
+            <input
+                class="parameter"
+                id="states-input"
+                name="states-input"
+                required
+                value="AB"
+            />
+            <label for="tape-alphabet-symbols-input"
+                >Tape Alphabet Symbols</label
+            >
+            <input
+                class="parameter"
+                id="tape-alphabet-symbols-input"
+                name="tape-alphabet-symbols-input"
+                required
+                value="01"
+            />
+            <label for="blank-symbol-input">Blank Symbol</label>
+            <input
+                class="parameter"
+                id="blank-symbol-input"
+                name="blank-symbol-input"
+                required
+                maxlength="1"
+                value="0"
+            />
+            <label for="input-symbols-input">Input Symbols</label>
+            <input
+                class="parameter"
+                id="input-symbols-input"
+                name="input-symbols-input"
+                value="1011"
+            />
+            <label for="initial-state-input">Initial State</label>
+            <input
+                class="parameter"
+                id="initial-state-input"
+                name="initial-state-input"
+                required
+                maxlength="1"
+                value="A"
+            />
+        </div>
+        <div id="state-wrapper">
+            <div id="state-grid">
+                <div id="header-row">
+                    <div id="tape-symbol-header" class="state-subheader">
+                        Tape Symbol
+                    </div>
+                    <div id="headers-container">
+                        <!-- Dynamically add states -->
+                        <div class="state-header">State A</div>
+                        <div class="state-header">State B</div>
+                    </div>
+                </div>
+                <div id="subheader-row">
+                    <!-- Dynamically add subheaders for states -->
+                    <div class="state-subheader">Write Symbol</div>
+                    <div class="state-subheader">Move Direction</div>
+                    <div class="state-subheader">Next State</div>
+                    <div class="state-subheader">Write Symbol</div>
+                    <div class="state-subheader">Move Direction</div>
+                    <div class="state-subheader">Next State</div>
+                </div>
+                <div id="data-rows-container">
+                    <!-- Dynamically add data rows -->
+                    <div class="state-data-row">
+                        <div class="state-subheader">0</div>
+                        <div class="state-data">0</div>
+                        <div class="state-data">L</div>
+                        <div class="state-data">A</div>
+                        <div class="state-data">0</div>
+                        <div class="state-data">L</div>
+                        <div class="state-data">A</div>
+                    </div>
+                    <div class="state-data-row">
+                        <div class="state-subheader">1</div>
+                        <div class="state-data">0</div>
+                        <div class="state-data">L</div>
+                        <div class="state-data">A</div>
+                        <div class="state-data">0</div>
+                        <div class="state-data">L</div>
+                        <div class="state-data">A</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="controls">
+            <button id="start-button">Start</button>
+            <button id="step-button">Step</button>
+            <button id="reset-button">Reset</button>
+            <button id="save-button">Save</button>
+            <button id="load-button">Load</button>
+            <input
+                accept=".turing"
+                id="load-input"
+                name="load-input"
+                style="display: none"
+                type="file"
+            />
+        </div>
+        <div id="error-div"></div>
+        <div id="turing-machine-grid">
+            <div id="head-div">
+                <span id="head-title">HEAD</span>
+                <span id="state-indicator">A</span>
+                <span id="position-indicator">0</span>
+            </div>
+            <div id="tape-container">
+                <div class="tape">TAPE-5</div>
+                <div class="tape">TAPE-4</div>
+                <div class="tape">TAPE-3</div>
+                <div class="tape">TAPE-2</div>
+                <div class="tape">TAPE-1</div>
+                <div class="tape">TAPE0</div>
+                <div class="tape">TAPE1</div>
+                <div class="tape">TAPE2</div>
+                <div class="tape">TAPE3</div>
+                <div class="tape">TAPE4</div>
+                <div class="tape">TAPE5</div>
+            </div>
+        </div>
+        <script src="main.js" type="module"></script>
+    </body>
+</html>

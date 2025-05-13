@@ -1,0 +1,282 @@
+:root {
+    --background-colour: #f8f9fa;
+    --dark-text-colour: #343a40;
+    --light-text-colour: #fff;
+    --title-colour: #1a54b5;
+    --subtitle-colour: #6c757d;
+    --parameters-background-colour: #fff;
+    --parameter-border-colour: #ced4da;
+    --header-background-colour: #e3f2fd;
+    --data-background-colour: #f1f8ff;
+    --data-hover-colour: #d1e8ff;
+    --button-background-colour: #007bff;
+    --button-hovered-background-colour: #0069d9;
+    --error-background-colour: #db2b1f;
+    --machine-background-colour: #fff;
+    --head-border-colour: #007bff;
+    --head-background-colour: #cce5ff;
+    --head-text-colour: #004085;
+    --tape-border-colour: #dee2e6;
+    --tape-background-colour: #f8f9fa;
+    --highlight-color: #ffc107;
+}
+
+body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: var(--background-colour);
+    color: var(--dark-text-colour);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--parameter-border-colour);
+}
+
+h1 {
+    text-align: center;
+    color: var(--title-colour);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--subtitle-colour);
+    font-size: 1.1rem;
+    margin-top: -1rem;
+}
+
+#parameters {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    margin-bottom: 30px;
+    background-color: var(--parameters-background-colour);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.parameter {
+    padding: 10px 12px;
+    border: 1px solid var(--parameter-border-colour);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.parameter:focus {
+    border-color: var(--button-background-colour);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: var(--dark-text-colour);
+}
+
+#state-grid {
+    display: grid;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+#header-row,
+#subheader-row,
+#headers-container,
+#data-rows-container,
+.state-data-row {
+    display: contents;
+}
+
+.state-header,
+.state-subheader,
+.state-data {
+    text-align: center;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border: 1px solid var(--parameter-border-colour);
+}
+
+.state-header {
+    grid-column: span 3;
+    background-color: var(--header-background-colour);
+    padding: 12px 8px;
+    font-weight: 600;
+    color: var(--dark-text-colour);
+    border-bottom: 2px solid var(--parameter-border-colour);
+}
+
+.state-subheader {
+    background-color: var(--header-background-colour);
+    padding: 10px 6px;
+    font-weight: 500;
+    color: var(--dark-text-colour);
+}
+
+.state-data {
+    background-color: var(--data-background-colour);
+    padding: 10px 6px;
+    transition: background-color 0.2s;
+}
+
+.state-data:hover {
+    background-color: var(--data-hover-colour);
+    cursor: pointer;
+}
+
+#tape-symbol-header {
+    grid-row: span 2;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: var(--button-background-colour);
+    color: var(--light-text-colour);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--button-hovered-background-colour);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+    border-radius: 4px;
+    background-color: var(--error-background-colour);
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--light-text-colour);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#turing-machine-grid {
+    display: grid;
+    width: 100%;
+    grid-template-rows: auto auto;
+    margin-top: 40px;
+    background-color: var(--machine-background-colour);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 30px 15px;
+}
+
+#head-div {
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--head-border-colour);
+    background-color: var(--head-background-colour);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    transform: translateY(10px);
+}
+
+#head-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--head-text-colour);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+#state-indicator,
+#position-indicator {
+    text-align: center;
+}
+
+#tape-container {
+    display: contents;
+}
+
+.tape {
+    grid-row: 2;
+    text-align: center;
+    border: 1px solid var(--tape-border-colour);
+    padding: 15px 10px;
+    background-color: var(--tape-background-colour);
+    min-height: 20px;
+    font-family: monospace;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #parameters {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    #controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    button {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .tape {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        padding: 20px;
+    }
+
+    #turing-machine-grid {
+        padding: 20px 10px;
+    }
+}
