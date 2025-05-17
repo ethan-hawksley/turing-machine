@@ -10,11 +10,20 @@ const inputSymbolsInput = document.getElementById("input-symbols-input");
 const initialStateInput = document.getElementById("initial-state-input");
 
 const startButton = document.getElementById("start-button");
+const speedSlider = document.getElementById("speed-slider");
 const stepButton = document.getElementById("step-button");
 const resetButton = document.getElementById("reset-button");
 const saveButton = document.getElementById("save-button");
 const loadButton = document.getElementById("load-button");
 const loadInput = document.getElementById("load-input");
+const showExamplesButton = document.getElementById("show-examples-button");
+const examplesDialog = document.getElementById("examples-dialog");
+
+const exampleBusyBeaver = document.getElementById("example-busy-beaver");
+const exampleBinaryIncrement = document.getElementById(
+  "example-binary-increment",
+);
+const closeExamplesButton = document.getElementById("close-examples-button");
 
 const errorDiv = document.getElementById("error-div");
 
@@ -119,6 +128,35 @@ function initialiseEventListeners() {
       reader.readAsText(file);
     }
   });
+
+  showExamplesButton.addEventListener("click", () => {
+    examplesDialog.showModal();
+  });
+
+  exampleBusyBeaver.addEventListener("click", () => {
+    loadExample("busy-beaver");
+  });
+
+  exampleBinaryIncrement.addEventListener("click", () => {
+    loadExample("binary-increment");
+  });
+
+  closeExamplesButton.addEventListener("click", () => {
+    examplesDialog.close();
+  });
+}
+
+function loadExample(example) {
+  const promise = fetch(`./examples/${example}.json`);
+  promise.then((response) => {
+    response.text().then((text) => {
+      const state = JSON.parse(text);
+      writeState(state);
+      drawInitialTuringMachine();
+      console.log(state);
+    });
+  });
+  examplesDialog.close();
 }
 
 function loadInstructions() {
@@ -382,9 +420,12 @@ function cycleTuringMachine() {
     if (turingMachine.getState() === "Halt") {
       turingMachine = null;
     } else {
-      setTimeout(() => {
-        cycleTuringMachine();
-      }, 100);
+      setTimeout(
+        () => {
+          cycleTuringMachine();
+        },
+        8000 / (speedSlider.value + 3),
+      );
     }
   }
 }
@@ -392,3 +433,22 @@ function cycleTuringMachine() {
 initialiseEventListeners();
 drawStateGrid();
 drawInitialTuringMachine();
+
+// tada it made the files
+//
+//
+//
+//
+// incrementing time
+//
+// whoopsie it's entirely wrong
+// lets fix it
+// ok maybe it was correct but binary is stored the other way
+//
+// hurrah we have a binary incrementer
+//
+// next up is busy beaver with 3 states
+//
+// 3 state busy beaver from Peterson
+//
+// yippie wikipedia had one

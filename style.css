@@ -11,6 +11,8 @@
     --data-hover-colour: #d1e8ff;
     --button-background-colour: #007bff;
     --button-hovered-background-colour: #0069d9;
+    --slider-track-colour: #007bff;
+    --slider-thumb-colour: #0069d9;
     --error-background-colour: #db2b1f;
     --machine-background-colour: #fff;
     --head-border-colour: #007bff;
@@ -152,7 +154,7 @@ label {
     margin: 30px 0;
 }
 
-button {
+.control-button {
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: 500;
@@ -165,15 +167,69 @@ button {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.control-button:hover {
     background-color: var(--button-hovered-background-colour);
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-button:active {
+.control-button:active {
     transform: translateY(1px);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 15rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--slider-track-colour);
+    height: 0.5rem;
+    border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-track {
+    background: var(--slider-track-colour);
+    height: 0.5rem;
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -12px; /* Centers thumb on the track */
+    background-color: var(--slider-thumb-colour);
+    height: 2rem;
+    width: 1rem;
+    border-radius: 5px;
+}
+
+input[type="range"]::-moz-range-thumb {
+    border: none; /*Removes extra border that FF applies*/
+    background-color: var(--slider-thumb-colour);
+    height: 2rem;
+    width: 1rem;
+    border-radius: 5px;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+    border: 1px solid var(--slider-thumb-colour);
+    outline: 3px solid var(--slider-thumb-colour);
+    outline-offset: 0.125rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb {
+    border: 1px solid var(--slider-thumb-colour);
+    outline: 3px solid var(--slider-thumb-colour);
+    outline-offset: 0.125rem;
 }
 
 .error-message {
