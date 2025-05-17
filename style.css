@@ -65,6 +65,7 @@ h1 {
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--parameter-border-colour);
 }
 
 .parameter {
@@ -276,7 +277,8 @@ input[type="range"]:focus::-moz-range-thumb {
 }
 
 #state-indicator,
-#position-indicator {
+#position-indicator,
+#step-indicator {
     text-align: center;
 }
 

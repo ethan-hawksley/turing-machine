@@ -31,6 +31,7 @@ const turingMachineGrid = document.getElementById("turing-machine-grid");
 const headDiv = document.getElementById("head-div");
 const stateIndicator = document.getElementById("state-indicator");
 const positionIndicator = document.getElementById("position-indicator");
+const stepIndicator = document.getElementById("step-indicator");
 const tapeContainer = document.getElementById("tape-container");
 
 let turingMachine = null;
@@ -341,13 +342,15 @@ function drawInitialTuringMachine() {
     blankSymbolInput.value,
     MIDPOINT + inputSymbolsInput.value.length,
   );
-  drawTuringMachine(visibleSlice, initialStateInput.value, 0);
+  drawTuringMachine(visibleSlice, initialStateInput.value, 0, 0);
 }
-function drawTuringMachine(visibleSlice, state, position) {
+
+function drawTuringMachine(visibleSlice, state, position, stepCount) {
   turingMachineGrid.style = `grid-template-columns: repeat(${VISIBLETAPE}, 1fr);`;
   headDiv.style = `grid-column: ${MIDPOINT + 1};`;
   stateIndicator.textContent = state;
   positionIndicator.textContent = position;
+  stepIndicator.textContent = stepCount;
   const frag = document.createDocumentFragment();
   for (const value of visibleSlice) {
     const tapeDiv = document.createElement("div");
@@ -406,7 +409,8 @@ function stepTuringMachine() {
     const slice = turingMachine.getSlice(-MIDPOINT, VISIBLETAPE - MIDPOINT - 1);
     const state = turingMachine.getState();
     const position = turingMachine.getPosition();
-    drawTuringMachine(slice, state, position);
+    const stepCount = turingMachine.getStepCount();
+    drawTuringMachine(slice, state, position, stepCount);
     if (turingMachine.getState() === "Halt") {
       turingMachine = null;
       startButton.textContent = "Start";

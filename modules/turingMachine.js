@@ -4,11 +4,13 @@ export class TuringMachine {
   #tape;
   #instructions;
   #state;
+  #stepCount;
 
   constructor(instructions, initialState, blankSymbol, inputSymbols) {
     this.#instructions = instructions;
     this.#tape = new Tape(blankSymbol, inputSymbols);
     this.#state = initialState;
+    this.#stepCount = 0;
   }
 
   step() {
@@ -21,6 +23,7 @@ export class TuringMachine {
       this.#tape.moveRight();
     }
     this.#state = instruction.nextState;
+    this.#stepCount++;
   }
 
   getSlice(start, end) {
@@ -33,5 +36,9 @@ export class TuringMachine {
 
   getPosition() {
     return this.#tape.getPosition();
+  }
+
+  getStepCount() {
+    return this.#stepCount;
   }
 }

@@ -1,12 +1,45 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link href="style.css" rel="stylesheet" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
+
         <title>Turing Machine</title>
+        <meta
+            content="Online Turing Machine simulator for exploring theoretical Computer Science concepts."
+            name="description"
+        />
+        <meta content="Ethan Hawksley" name="author" />
+        <meta
+            content="turing machine, computer science, computation theory, simulation"
+            name="keywords"
+        />
+        <meta content="#4285f4" name="theme-color" />
+
         <link href="favicon.svg" rel="icon" />
-        <meta content="Online Turing Machine simulator." name="description" />
+
+        <link href="style.css" rel="stylesheet" />
+
+        <link href="https://hawksley.dev/turing-machine" rel="canonical" />
+
+        <meta content="https://hawksley.dev/turing-machine" property="og:url" />
+        <meta content="website" property="og:type" />
+        <meta content="Turing Machine" property="og:title" />
+        <meta
+            content="Online Turing Machine simulator."
+            property="og:description"
+        />
+        <meta content="summary" name="twitter:card" />
+        <meta content="hawksley.dev" property="twitter:domain" />
+        <meta
+            content="https://hawksley.dev/turing-machine"
+            property="twitter:url"
+        />
+        <meta content="Turing Machine" name="twitter:title" />
+        <meta
+            content="Online Turing Machine simulator."
+            name="twitter:description"
+        />
     </head>
     <body>
         <header>
@@ -38,9 +71,9 @@
             <input
                 class="parameter"
                 id="blank-symbol-input"
+                maxlength="1"
                 name="blank-symbol-input"
                 required
-                maxlength="1"
                 value="0"
             />
             <label for="input-symbols-input">Input Symbols</label>
@@ -54,16 +87,16 @@
             <input
                 class="parameter"
                 id="initial-state-input"
+                maxlength="1"
                 name="initial-state-input"
                 required
-                maxlength="1"
                 value="A"
             />
         </div>
         <div id="state-wrapper">
             <div id="state-grid">
                 <div id="header-row">
-                    <div id="tape-symbol-header" class="state-subheader">
+                    <div class="state-subheader" id="tape-symbol-header">
                         Tape Symbol
                     </div>
                     <div id="headers-container">
@@ -105,19 +138,49 @@
             </div>
         </div>
         <div id="controls">
-            <button id="start-button" class="control-button">Start</button>
+            <button
+                class="control-button"
+                id="start-button"
+                aria-label="Start simulation."
+            >
+                Start
+            </button>
             <label for="speed-slider">Speed</label>
             <input
                 id="speed-slider"
+                max="20"
+                min="1"
                 name="speed-slider"
                 type="range"
-                min="1"
-                max="20"
             />
-            <button id="step-button" class="control-button">Step</button>
-            <button id="reset-button" class="control-button">Reset</button>
-            <button id="save-button" class="control-button">Save</button>
-            <button id="load-button" class="control-button">Load</button>
+            <button
+                class="control-button"
+                id="step-button"
+                aria-label="Step simulation."
+            >
+                Step
+            </button>
+            <button
+                class="control-button"
+                id="reset-button"
+                aria-label="Reset simulation."
+            >
+                Reset
+            </button>
+            <button
+                class="control-button"
+                id="save-button"
+                aria-label="Save instructions."
+            >
+                Save
+            </button>
+            <button
+                class="control-button"
+                id="load-button"
+                aria-label="Load instructions."
+            >
+                Load
+            </button>
             <input
                 accept=".turing"
                 id="load-input"
@@ -125,17 +188,29 @@
                 style="display: none"
                 type="file"
             />
-            <button id="show-examples-button" class="control-button">
+            <button class="control-button" id="show-examples-button">
                 Show Examples
             </button>
             <dialog id="examples-dialog">
-                <button id="example-busy-beaver" class="control-button">
+                <button
+                    class="control-button"
+                    id="example-busy-beaver"
+                    aria-label="Load 3 State Busy Beaver example."
+                >
                     3 State Busy Beaver
                 </button>
-                <button id="example-binary-increment" class="control-button">
+                <button
+                    class="control-button"
+                    id="example-binary-increment"
+                    aria-label="Load Binary Increment example."
+                >
                     Binary Increment
                 </button>
-                <button id="close-examples-button" class="control-button">
+                <button
+                    class="control-button"
+                    id="close-examples-button"
+                    aria-label="Close examples dialog."
+                >
                     Close Examples
                 </button>
             </dialog>
@@ -146,6 +221,7 @@
                 <span id="head-title">HEAD</span>
                 <span id="state-indicator">A</span>
                 <span id="position-indicator">0</span>
+                <span id="step-indicator">0</span>
             </div>
             <div id="tape-container">
                 <div class="tape">TAPE-5</div>

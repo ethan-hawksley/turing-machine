@@ -1,1 +1,21 @@
-{"instructions":{"A":{"0":{"writeSymbol":"1","moveDirection":"Right","nextState":"Halt"},"1":{"writeSymbol":"0","moveDirection":"Right","nextState":"A"}}},"states":"A","tapeAlphabetSymbols":"01","blankSymbol":"0","inputSymbols":"11101","initialState":"A"}
+{
+  "instructions": {
+    "A": {
+      "0": {
+        "writeSymbol": "1",
+        "moveDirection": "Right",
+        "nextState": "Halt"
+      },
+      "1": {
+        "writeSymbol": "0",
+        "moveDirection": "Right",
+        "nextState": "A"
+      }
+    }
+  },
+  "states": "A",
+  "tapeAlphabetSymbols": "01",
+  "blankSymbol": "0",
+  "inputSymbols": "11101",
+  "initialState": "A"
+}
