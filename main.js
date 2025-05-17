@@ -437,22 +437,3 @@ function cycleTuringMachine() {
 initialiseEventListeners();
 drawStateGrid();
 drawInitialTuringMachine();
-
-// tada it made the files
-//
-//
-//
-//
-// incrementing time
-//
-// whoopsie it's entirely wrong
-// lets fix it
-// ok maybe it was correct but binary is stored the other way
-//
-// hurrah we have a binary incrementer
-//
-// next up is busy beaver with 3 states
-//
-// 3 state busy beaver from Peterson
-//
-// yippie wikipedia had one
