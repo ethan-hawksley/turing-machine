@@ -34,6 +34,9 @@ const positionIndicator = document.getElementById("position-indicator");
 const stepIndicator = document.getElementById("step-indicator");
 const tapeContainer = document.getElementById("tape-container");
 
+const VISIBLETAPE = 15; // Should be odd so head can be central
+const MIDPOINT = Math.floor((VISIBLETAPE + 1) / 2) - 1; // The midpoint when 0-indexed
+
 let turingMachine = null;
 
 function initialiseEventListeners() {
@@ -62,14 +65,17 @@ function initialiseEventListeners() {
 
   startButton.addEventListener("click", () => {
     if (startButton.textContent === "Start") {
+      // Check for valid parameters.
       const errors = validateParameters();
       showErrors(errors);
       if (!errors.length) {
+        // Initialise Turing machine, and start cycling.
         startTuringMachine();
         cycleTuringMachine();
         startButton.textContent = "Stop";
       }
     } else {
+      // Assume the button is stopping.
       turingMachine = null;
       startButton.textContent = "Start";
     }
@@ -79,6 +85,7 @@ function initialiseEventListeners() {
     const errors = validateParameters();
     showErrors(errors);
     if (!errors.length) {
+      // Step Turing machine once.
       if (turingMachine === null) {
         startTuringMachine();
       }
@@ -87,13 +94,15 @@ function initialiseEventListeners() {
   });
 
   resetButton.addEventListener("click", () => {
+    // Delete turing machine and draw blank machine.
     turingMachine = null;
     drawInitialTuringMachine();
   });
 
   saveButton.addEventListener("click", () => {
-    console.log("clicked");
+    // Create link.
     const link = document.createElement("a");
+    // Store current instructions and states as JSON.
     const instructions = loadInstructions();
     const state = { instructions: instructions };
     state.states = statesInput.value;
@@ -101,8 +110,8 @@ function initialiseEventListeners() {
     state.blankSymbol = blankSymbolInput.value;
     state.inputSymbols = inputSymbolsInput.value;
     state.initialState = initialStateInput.value;
-    console.log(state);
 
+    // Create a file of the state and download it.
     const file = new Blob([JSON.stringify(state)], {
       type: "text/plain",
     });
@@ -113,10 +122,12 @@ function initialiseEventListeners() {
   });
 
   loadButton.addEventListener("click", () => {
+    // Relay click to the hidden input element.
     loadInput.click();
   });
 
   loadInput.addEventListener("change", () => {
+    // When file picked, load the state in the file.
     const file = loadInput.files[0];
     if (file) {
       const reader = new FileReader();
@@ -124,7 +135,6 @@ function initialiseEventListeners() {
         const state = JSON.parse(reader.result);
         writeState(state);
         drawInitialTuringMachine();
-        console.log(state);
       };
       reader.readAsText(file);
     }
@@ -148,19 +158,20 @@ function initialiseEventListeners() {
 }
 
 function loadExample(example) {
+  // Network request for the JSON.
   const promise = fetch(`./examples/${example}.json`);
   promise.then((response) => {
     response.text().then((text) => {
       const state = JSON.parse(text);
       writeState(state);
       drawInitialTuringMachine();
-      console.log(state);
     });
   });
   examplesDialog.close();
 }
 
 function loadInstructions() {
+  // Select all state selectors and allocate their value to the instructions object. 
   let instructions = {};
   const selectors = document.getElementsByClassName("state-data");
   for (const selector of selectors) {
@@ -186,13 +197,16 @@ function loadInstructions() {
 }
 
 function writeState(state) {
+  // Overwrite the value of the inputs.
   statesInput.value = state.states;
   tapeAlphabetSymbolsInput.value = state.tapeAlphabetSymbols;
   blankSymbolInput.value = state.blankSymbol;
   inputSymbolsInput.value = state.inputSymbols;
   initialStateInput.value = state.initialState;
+  // Redraw the selectors grid.
   drawStateGrid();
 
+  // Overwrite the content of the selectors.
   const instructions = state.instructions;
   const selectors = document.getElementsByClassName("state-data");
   for (const selector of selectors) {
@@ -213,6 +227,7 @@ function writeState(state) {
 function drawStateGrid() {
   const stateGrid = document.createElement("div");
   stateGrid.id = "state-grid";
+  // Dynamic amount of columns to accomodate the number of states.
   stateGrid.style = `grid-template-columns: repeat(${statesInput.value.length * 3 + 1}, 1fr);`;
 
   const headerRow = createHeaderRow();
@@ -227,6 +242,7 @@ function createHeaderRow() {
   const headerRow = document.createElement("div");
   headerRow.id = "header-row";
 
+  // Custom handling for the tape symbol header.
   const tapeSymbolHeader = document.createElement("div");
   tapeSymbolHeader.id = "tape-symbol-header";
   tapeSymbolHeader.className = "state-subheader";
@@ -329,8 +345,6 @@ function createDataRowsContainer() {
   return dataRowsContainer;
 }
 
-const VISIBLETAPE = 15; // Should be odd so head can be central
-const MIDPOINT = Math.floor((VISIBLETAPE + 1) / 2) - 1; // The midpoint when 0-indexed
 
 function drawInitialTuringMachine() {
   const visibleSlice = Array(MIDPOINT)
@@ -363,7 +377,6 @@ function drawTuringMachine(visibleSlice, state, position, stepCount) {
 
 function startTuringMachine() {
   const instructions = loadInstructions();
-  console.log(instructions);
   turingMachine = new TuringMachine(
     instructions,
     initialStateInput.value,
