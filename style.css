@@ -298,6 +298,11 @@ input[type="range"]:focus::-moz-range-thumb {
     transition: all 0.2s ease;
 }
 
+footer {
+    text-align: center;
+    margin: 2rem;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 15px;
