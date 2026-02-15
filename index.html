@@ -10,10 +10,6 @@
             name="description"
         />
         <meta content="Ethan Hawksley" name="author" />
-        <meta
-            content="turing machine, computer science, computation theory, simulation"
-            name="keywords"
-        />
         <meta content="#4285f4" name="theme-color" />
 
         <link href="favicon.svg" rel="icon" />
@@ -40,8 +36,6 @@
             content="Online Turing Machine simulator."
             name="twitter:description"
         />
-
-        <meta name="robots" content="noindex">
     </head>
     <body>
         <header>
@@ -239,6 +233,22 @@
                 <div class="tape">TAPE5</div>
             </div>
         </div>
+        <section style="margin-top: 3rem; border-top: 1px solid var(--parameter-border-colour); padding-top: 1rem;">
+            <h2 style="color: var(--title-colour); font-size: 1.5rem;">Explanation</h2>
+            <p>
+                A Turing machine is a set of rules, states, and transitions, first described by Alan Turing in 1936.
+                They are very useful in the field of computer science since they are basic and simple to describe, yet capable of
+                implementing any given algorithm. According to the <em>Church-Turing thesis</em>, all computers are only as powerful as Turing
+                machines.
+            </p>
+            <p>Turing machines consist of the following components:</p>
+            <ul style="list-style-position: inside; color: var(--dark-text-colour);">
+                <li>A fixed number of states, with one as the <em>start state</em>; a Turing machine is always in exactly one state</li>
+                <li>An infinitely long tape in both directions, populated with <em>storage cells</em> that can contain a value</li>
+                <li>A defined <em>transition function</em> that dictates how the Turing machine changes between states depending on the value of the <em>storage cells</em></li>
+                <li>An alphabet of all the characters the Turing machine can work with</li>
+            </ul>
+        </section>
         <footer>Made by <a href="https://hawksley.dev/">Ethan Hawksley</a></footer>
         <script src="main.js" type="module"></script>
     </body>
