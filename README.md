@@ -31,3 +31,7 @@ Turing machines consist of the following components:
 
 There are some variations on Turing machines, such as a multi-tape machine, or a nondeterministic machine that takes
 different branches based off chance. However, this program only simulates the most commonly used Turing machine.
+
+## Author
+
+[Ethan Hawksley](https://hawksley.dev)
